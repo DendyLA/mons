@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'MacPaw Fixel';
+    src: url('assets/fonts/FixelText-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MacPaw Fixel';
+    src: url('assets/fonts/FixelText-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MacPaw Fixel';
+    src: url('assets/fonts/FixelText-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MacPaw Fixel';
+    src: url('assets/fonts/FixelText-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MacPaw Fixel';
+    src: url('assets/fonts/FixelText-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MacPaw Fixel';
+    src: url('assets/fonts/FixelText-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MacPaw Fixel';
+    src: url('assets/fonts/FixelText-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* Подключение Angst Bold */
+@font-face {
+    font-family: 'Angst';
+    src: url('assets/fonts/Angst-Bold.woff2') format('woff2'),
+        url('assets/fonts/Angst-Bold.woff') format('woff'),
+        url('assets/fonts/Angst-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+  /* Подключение Angst Bold Serif */
+@font-face {
+    font-family: 'Angst Serif';
+    src: url('assets/fonts/Angst-BoldSerif.woff2') format('woff2'),
+        url('assets/fonts/Angst-BoldSerif.woff') format('woff'),
+        url('assets/fonts/Angst-BoldSerif.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+  /* Подключение Angst Normal */
+@font-face {
+    font-family: 'Angst';
+    src: url('assets/fonts/Angst-Normal.woff2') format('woff2'),
+        url('assets/fonts/Angst-Normal.woff') format('woff'),
+        url('assets/fonts/Angst-Normal.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  /* Подключение Angst Normal Serif */
+@font-face {
+    font-family: 'Angst Serif';
+    src: url('assets/fonts/Angst-NormalSerif.woff2') format('woff2'),
+        url('assets/fonts/Angst-NormalSerif.woff') format('woff'),
+        url('assets/fonts/Angst-NormalSerif.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    }
+    
+  /* Подключение Angst Thin */
+@font-face {
+    font-family: 'Angst';
+    src: url('assets/fonts/Angst-Thin.woff2') format('woff2'),
+        url('assets/fonts/Angst-Thin.woff') format('woff'),
+        url('assets/fonts/Angst-Thin.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+  /* Подключение Angst Thin Serif */
+@font-face {
+    font-family: 'Angst Serif';
+    src: url('assets/fonts/Angst-ThinSerif.woff2') format('woff2'),
+        url('assets/fonts/Angst-ThinSerif.woff') format('woff'),
+        url('assets/fonts/Angst-ThinSerif.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}

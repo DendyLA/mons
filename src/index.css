@@ -1,0 +1,83 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Устанавливает border-box для всех элементов */
+}
+
+/* Сброс стилей по умолчанию для HTML и Body */
+html, body {
+    width: 100%;
+    height: 100%;
+    font-size: 100%; /* Возвращает размер шрифта к базовому значению */
+    -webkit-font-smoothing: antialiased; /* Улучшает сглаживание текста в WebKit-браузерах */
+    -moz-osx-font-smoothing: grayscale; /* Улучшает сглаживание текста в Firefox */
+}
+
+/* Убираем стандартные стили списков */
+ul, ol {
+    list-style: none;
+}
+
+/* Убираем стандартное оформление ссылок */
+a {
+    text-decoration: none;
+    color: inherit; /* Наследует цвет текста родительского элемента */
+}
+
+/* Сброс стилей для изображений */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%; /* Изображения масштабируются согласно размеру контейнера */
+}
+
+/* Устанавливаем базовый box-sizing */
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit; /* Наследуем box-sizing для всех псевдоэлементов */
+}
+
+/* Сброс стилей таблиц */
+table {
+    border-collapse: collapse; /* Убирает двойные линии между ячейками */
+    border-spacing: 0; /* Убирает отступы между ячейками */
+}
+
+/* Сброс стилей для кнопок и форм */
+button, input, select, textarea {
+    font: inherit; /* Наследует шрифт родителя */
+    background: none; /* Убирает фон */
+    border: none; /* Убирает границу */
+    padding: 0;
+    margin: 0;
+    box-shadow: none; /* Убирает тени */
+    outline: none; /* Убирает обводку при фокусе */
+}
+
+/* Сброс стилей для кнопок */
+button {
+    cursor: pointer; /* Добавляет курсор при наведении на кнопку */
+}
+
+/* Убираем стандартные отступы для заголовков */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: inherit; /* Наследует начертание */
+}
+
+/* Убираем стандартные стили для полей форм */
+input, textarea {
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+/* Устанавливаем минимальные размеры на блоках */
+body, html, main {
+    min-height: 100%; /* Занимает всю высоту экрана */
+}

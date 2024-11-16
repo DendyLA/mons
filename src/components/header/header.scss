@@ -1,0 +1,37 @@
+.header{
+    
+    &__wrapper{
+        padding-top: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 38px
+    }
+    &__item{
+        font-family: 'MacPaw Fixel';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        &:hover{
+            opacity: .7;
+        }
+    }
+    &__contact{
+        font-family: 'MacPaw Fixel';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        &:hover{
+            opacity: .7;
+        }
+    }
+}

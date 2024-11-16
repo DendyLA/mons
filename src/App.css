@@ -1,0 +1,41 @@
+.active{
+    display: block !important;
+}
+html,body{
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1500px;
+    height: 100%; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+*{
+    z-index: 2;
+}
+.page{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+}
+.page__wrapper{
+    background: #1C173E;
+    scroll-snap-type: y mandatory; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.noise{
+    height: 100%;
+    width: 100%;
+    background-image: url(assets/noise.png);
+    opacity: .09;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
