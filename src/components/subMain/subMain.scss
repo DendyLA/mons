@@ -1,0 +1,18 @@
+.subMain{
+    flex-grow: 1;
+    &__wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    &__title{
+        font-family: 'Angst';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #FAF7F2;
+    }
+}

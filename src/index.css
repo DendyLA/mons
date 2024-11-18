@@ -81,3 +81,13 @@ input, textarea {
 body, html, main {
     min-height: 100%; /* Занимает всю высоту экрана */
 }
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;;
+    }
+    to {
+        opacity: 1;
+    }
+}
