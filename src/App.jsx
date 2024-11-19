@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 
 import Header from './components/header/header'
 import Main from './components/main/main'
-import SubMain from './components/subMain/SubMain'
+import SubMain from './components/subMain/subMain'
 import Info from './components/info/info'
 
 import './App.css'
