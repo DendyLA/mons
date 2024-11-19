@@ -6,12 +6,31 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        
+        transition: color 1s ease;
+        &.light {
+            color: black;
+        }
+        &.dark {
+            color: white;
+        }
+    }
+    &__logo{
+        & path {
+            transition: fill 0.3s ease;
+        }
+        &.light path {
+            fill: black;
+        }
+        &.dark path {
+            fill: white;
+        }
     }
     &__nav{
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 38px
+        gap: 38px;
     }
     &__item{
         font-family: 'MacPaw Fixel';
@@ -19,9 +38,9 @@
         font-weight: 500;
         font-size: 12px;
         text-transform: uppercase;
-        color: #FFFFFF;
+        transition: color .5s;
         &:hover{
-            opacity: .7;
+            color: #9E9E9E;
         }
     }
     &__contact{
@@ -30,9 +49,9 @@
         font-weight: 500;
         font-size: 12px;
         text-transform: uppercase;
-        color: #FFFFFF;
+        transition: color .5s;
         &:hover{
-            opacity: .7;
+            color: #9E9E9E;
         }
     }
 }

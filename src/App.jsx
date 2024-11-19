@@ -3,13 +3,15 @@ import {useState, useEffect} from 'react'
 import Header from './components/header/header'
 import Main from './components/main/main'
 import SubMain from './components/subMain/SubMain'
-
+import Info from './components/info/info'
 
 import './App.css'
 
 function App() {
 
 	const [currentSection, setCurrentSection] = useState(0); // Индекс текущей секции
+	const [isScrolling, setIsScrolling] = useState(false); // Флаг для блокировки
+	const [visibleSection, setVisibleSection] = useState(null); // Для задержки отображения контента
 
   // Массив секций с несколькими контентами для каждой
 	const sections = [
@@ -24,33 +26,59 @@ function App() {
 		content: [
 			<SubMain />
 		],
+		},
+		{
+		className: "view__three",
+		content: [
+			<Info />
+		]
 		}
 		//add here
 	];
 
 	const handleWheel = (e) => {
-		if (e.deltaY > 0) {
-			// Прокрутка вниз: переходим к следующей секции, если есть
-			setCurrentSection((prev) => Math.min(prev + 1, sections.length - 1));
-		} else {
-			// Прокрутка вверх: возвращаемся к предыдущей секции, если есть
-			setCurrentSection((prev) => Math.max(prev - 1, 0));
+		if (!isScrolling) {
+			setIsScrolling(true);
+		
+			if (e.deltaY > 0) {
+				// Прокрутка вниз: переходим к следующей секции, если есть
+				setCurrentSection((prev) => Math.min(prev + 1, sections.length - 1));
+			} else {
+				// Прокрутка вверх: возвращаемся к предыдущей секции, если есть
+				setCurrentSection((prev) => Math.max(prev - 1, 0));
+			}
+	
+			// Снимаем блокировку через 1 секунду
+			setTimeout(() => {
+				setIsScrolling(false);
+			}, 1000);
 		}
 	};
 
+	//scroll effect
 	useEffect(() => {
 		const wrapper = document.querySelector(".page__wrapper");
 		wrapper.addEventListener("wheel", handleWheel);
-
+	
 		return () => {
-		wrapper.removeEventListener("wheel", handleWheel);
+			wrapper.removeEventListener("wheel", handleWheel);
 		};
-	}, []);
+	  }, [isScrolling]); // Добавлен `isScrolling` в зависимости
+
+	//появление content__wrapper
+	useEffect(() => {
+	// Устанавливаем задержку перед появлением контента
+	const timeout = setTimeout(() => {
+		setVisibleSection(currentSection);
+	}, 800);
+
+	return () => clearTimeout(timeout);
+	}, [currentSection]);
 
 
 return (
 	<div className="page">
-	<Header/>
+	<Header currentSection={currentSection}/>
 		<div className="page__wrapper" style={{
           transform: `translateY(-${currentSection * 100}vh)`,
           transition: "transform 2s ease", // Плавный переход
@@ -60,11 +88,6 @@ return (
 			<div
 				key={index}
 				className={`view ${section.className}`}
-				style={{
-				// opacity: currentSection === index ? 1 : 0,
-				// transform: currentSection === index ? "translateY(0)" : "translateY(20px)",
-				// transition: "opacity 1s ease, transform 1s ease",
-				}}
 			>
 				{section.className == 'view__two' ? <div className="noise"></div> : ''}
 				{section.content.map((content, i) => (
@@ -72,9 +95,9 @@ return (
 					key={i}
 					className='content__wrapper'
 					style={{
-					opacity: currentSection === index ? 1 : 0,
-					transform: currentSection === index ? "translateY(0)" : "translateY(20px)",
-					transition: "opacity 1s ease, transform 1s ease",
+						opacity: visibleSection === index ? 1 : 0,
+						transform: visibleSection === index ? "translateY(0)" : "translateY(20px)",
+						transition: "opacity 3s ease, transform 1s ease",
 					}}
 				>
 					{content}

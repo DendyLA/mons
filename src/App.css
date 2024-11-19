@@ -47,6 +47,9 @@ html,body{
     background: linear-gradient(to bottom, #1C173E 0%, #FFFFFF 100%);
     position: relative;
 }
+.view__three{
+    background-color: #FFFFFF;
+}
 .content__wrapper{
     height: 100%;
     display: flex;
