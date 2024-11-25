@@ -7,8 +7,8 @@ function Main(){
 
     return(
         <section className="main">
-            <div className="container">
-                <div className={'main__wrapper'}>
+            <div className="container row">
+                <div className='main__wrapper col-4 offset-4'>
                     <div className="main__text">
                         <h1 className="main__title">стратегическое <br />превосходство бренда</h1>
                         <h2 className="main__subtitle">Лаборатория стратегического бренд-консалтинга</h2>

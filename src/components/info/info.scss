@@ -2,12 +2,12 @@
     flex-grow: 1;
     &__wrapper{
         height: 100%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        gap: 120px;
-        padding-right: 100px;
-        padding-top: 16%;
+        gap:80px;
+        padding-top: 21%;
     }
     &__current{
         font-family: 'MacPaw Fixel';
@@ -41,6 +41,26 @@
         width: 200px;
         text-transform: uppercase;
         color: #000000;
+        transition: all 0.6s ease;
+        opacity: 0.5;
+        transform: translateY(50px);
+        position: relative;
+
+        &.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &.previous {
+            
+            opacity: 0;
+            transform: translateY(-30px); // Уход наверх
+        }
+
+        &.inactive {
+            opacity: 0.3;
+            transform: translateY(50px); // Расположение ниже
+        }
     }
     &__text{
         font-family: 'MacPaw Fixel';
@@ -51,6 +71,7 @@
         color: #9E9E9E;
     }
     &__list{
+        margin-top: 50px;
         &_item{
             font-family: 'MacPaw Fixel';
             font-style: normal;
@@ -69,6 +90,17 @@
     }
     &__middle{
         flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &_wrapper{
+            height: 400px; /* Примерный размер */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; 
+        }
     }
     &__right{
         flex: 1;
