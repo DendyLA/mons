@@ -31,15 +31,17 @@ html,body{
     height: 100%;
     width: 100%;
     background-image: url(assets/noise.png);
-    opacity: .09;
+    background-repeat: no-repeat;
+    background-size: cover;
+    mix-blend-mode: soft-light;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
+    transform: translateZ(0)
 }
 .view{
     height: 100vh;
-    backface-visibility: hidden;
     overflow: hidden;
 }
 .view__one{
