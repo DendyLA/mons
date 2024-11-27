@@ -32,13 +32,26 @@
             color: #111111;
         }
     }
+    &__skip{
+        font-family: 'MacPaw Fixel';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #9E9E9E;
+        cursor: pointer;
+        transition: color .5s;
+        &:hover{
+            color: #111111;
+        }
+    }
     &__item{
         font-family: 'Angst';
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
         text-align: center;
-        width: 210px;
+        width: 100%;
         text-transform: uppercase;
         color: #000000;
         transition: all 1s ease;
@@ -49,6 +62,7 @@
         &.active {
             opacity: 1;
             transform: translateY(0);
+            filter: blur(0px);
         }
 
         &.previous {
@@ -58,8 +72,9 @@
         }
 
         &.inactive {
-            opacity: 0.3;
+            opacity: 0.7;
             transform: translateY(50px); // Расположение ниже
+            filter: blur(3px);
         }
     }
     &__text{
@@ -94,10 +109,15 @@
 
 
     &__left{
+        position: relative;
         flex: 1;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        height: 300px;
+        & a{
+            position: absolute;
+            bottom: 40px;
+        }
     }
     &__middle{
         flex: 1;
@@ -106,11 +126,12 @@
         align-items: center;
         &_wrapper{
             height: 400px; /* Примерный размер */
+            width: 210px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px; 
+            gap: 60px; 
         }
     }
     &__right{

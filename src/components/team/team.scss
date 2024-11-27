@@ -1,0 +1,76 @@
+.team{
+    flex: 1;
+    &__wrapper{
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    &__title{
+        font-family: 'Angst';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #FAF7F2;
+    }
+    &__main{
+        height: 100%;
+        width: 100%;
+    }
+    &__left{
+        display: flex;
+        align-items: center;
+    }
+    &__right{
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    &__current{
+        font-family: 'MacPaw Fixel';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        color: #9E9E9E;
+        & span{
+            color: #FFFF;
+        }
+    }
+    &__circle{
+        width: 435px;
+        height: 435px;
+        border-radius: 100%;
+    }
+    &__names{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 180px;
+        position: absolute;
+        left: 125px;
+        padding-top: 50px;
+        &_item{
+            width: 250px;
+            height: 75px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        &_name{
+            font-family: 'Angst';
+            font-style: normal;
+            font-weight: 100;
+            font-size: 20px;
+            text-transform: uppercase;
+            color: #FAF7F2;
+        }
+        &_prof{
+            font-family: 'MacPaw Fixel';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+    }
+}

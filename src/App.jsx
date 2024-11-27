@@ -4,6 +4,8 @@ import Header from './components/header/header'
 import Main from './components/main/main'
 import SubMain from './components/subMain/subMain'
 import Info from './components/info/info'
+import Projects from './components/projects/projects'
+import Team from './components/team/team'
 
 import './App.css'
 
@@ -31,6 +33,47 @@ function App() {
 		className: "view__three",
 		content: [
 			<Info />
+		]
+		},
+		{
+		className: "view__four",
+		content: [
+			(
+				<div className="projects">
+					<div className="container">
+						<div className="projects__wrapper">
+							<div className="projects__first">
+								<h2 className="projects__title" id='projects'>наши кейсы</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			)
+		]
+		},
+		{
+		className: "view__five",
+		content: [
+			<Projects />
+		]
+		}
+		,
+		{
+		className: "view__six",
+		content: [
+			<section className="team">
+				<div className="container">
+					<div className="team__wrapper row">
+						<h3 className="team__title col-4 offset-4">Познакомьтесь с нашей командой </h3>
+					</div>
+				</div>
+			</section>
+		]
+		},
+		{
+		className: "view__seven",
+		content: [
+			<Team />
 		]
 		}
 		//add here
@@ -89,7 +132,7 @@ return (
 				key={index}
 				className={`view ${section.className}`}
 			>
-				{section.className == 'view__two' ? <div className="noise"></div> : ''}
+				{section.className == 'view__two' || section.className == 'view__six' || section.className == 'view__seven'? <div className="noise"></div> : ''}
 				{section.content.map((content, i) => (
 				<div
 					key={i}

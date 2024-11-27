@@ -40,7 +40,7 @@ html,body{
 .view{
     height: 100vh;
     backface-visibility: hidden;
-    transform: translateZ(0);
+    overflow: hidden;
 }
 .view__one{
     background: #1C173E;
@@ -51,6 +51,14 @@ html,body{
 }
 .view__three{
     background-color: #FFFFFF;
+}
+.view__six{
+    background: linear-gradient(to bottom, #FFFFFF 0%, #1C173E 100%);
+    position: relative;
+}
+.view__seven{
+    background: #1C173E;
+    position: relative;
 }
 .content__wrapper{
     height: 100%;

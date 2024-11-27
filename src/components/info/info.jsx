@@ -32,7 +32,7 @@ function Info() {
             title: "Брендинговая стратегия",
             text: "Погружение в мир вашего бизнеса начинается с детального анализа ключевых показателей эффективности и комплексного изучения бизнес-процессов. Мы проводим глубокую оценку данных, выявляем ключевые тенденции рынка, конкурентного окружения и потребительских предпочтений. Сотрудничая с ведущими отраслевыми экспертами, мы предоставляем обоснованные рекомендации и формируем персонализированные решения, которые учитывают как внутренние ресурсы компании, так и внешние рыночные факторы.",
             list: [
-                 "анализ рынка и конкурентов",
+                "анализ рынка и конкурентов",
                 "аудит показателей бизнеса и операционных решений",
                 "custdev и привлечение отраслевых экспертов",
                 "формирование решений на основе фактических срезов внешнего окружения",
@@ -44,6 +44,7 @@ function Info() {
         const handleScroll = (e) => {
             e.stopPropagation();
             e.preventDefault();
+            
 
             if (isScrolling) return;
 
@@ -74,17 +75,18 @@ function Info() {
     return (
         <section className="info">
             <div className="container">
-                <div className="info__wrapper">
-                    <div className="info__left">
+                <div className="info__wrapper ">
+                    <div className="info__left ">
                         <div className="info__current">
                             <span>{currentItem + 1}</span>/{infoItems.length}
                         </div>
                         <div className="info__link">Посмотреть кейсы</div>
+                        <a href="#projects"><div className="info__skip">пропустить</div></a>
                     </div>
                     <div className="info__middle">
                         <div className="info__middle_wrapper">
                             {infoItems.map((item, index) => (
-                                <div
+                                <h3
                                     key={index}
                                     className={`info__item ${
                                         index === currentItem
@@ -95,7 +97,7 @@ function Info() {
                                     }`}
                                 >
                                     {item.title}
-                                </div>
+                                </h3>
                             ))}
                         </div>
                     </div>

@@ -5,14 +5,14 @@ import './header.scss'
 import logo from '../../assets/logo.svg'
 
 function Header({ currentSection }){
-    const theme = currentSection < 2 ? "dark" : "light";
+    const theme = currentSection < 2 || currentSection == 4 || currentSection > 5 ? "dark" : "light";
     
     return(
         <header className='header'>
             <div className="container">
                 <div className={`header__wrapper ${theme}`}>
                     <svg
-                    className={`header__logo ${theme}`}
+                    className={`header__logo ${currentSection == 4 ? 'light' : theme}`}
                     width="90"
                     height="20"
                     viewBox="0 0 90 20"
