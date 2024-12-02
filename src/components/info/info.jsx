@@ -79,7 +79,7 @@ function Info({ currentItem, setCurrentItem }) {
                             <span>{currentItem + 1}</span>/{infoItems.length}
                         </div>
                         <div className="info__link">Посмотреть кейсы</div>
-                        <a href="#projects">
+                        <a href="">
                             <div className="info__skip">пропустить</div>
                         </a>
                     </div>
