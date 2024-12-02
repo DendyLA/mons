@@ -20,12 +20,16 @@
     }
     &__left{
         display: flex;
-        align-items: center;
+        // align-items: center;
+        position: relative;
+        top: 43%;
+        height: calc(100% - 57%);
     }
     &__right{
         display: flex;
-        align-items: center;
         position: relative;
+        top: 18.5%;
+        height: calc(100% - 44%);
     }
     &__current{
         font-family: 'MacPaw Fixel';
@@ -41,36 +45,86 @@
         width: 435px;
         height: 435px;
         border-radius: 100%;
+        margin-left: 12px;
     }
     &__names{
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 180px;
+        // gap: 180px;
         position: absolute;
-        left: 125px;
-        padding-top: 50px;
+        left: 141px;
+        top: 42.5%;
         &_item{
-            width: 250px;
+            width: 205px;
             height: 75px;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            &:nth-child(2){
+                margin-left: 189px;
+            }
+            &:nth-child(3){
+                margin-left: 100px;
+            }
         }
         &_name{
             font-family: 'Angst';
             font-style: normal;
-            font-weight: 100;
+            font-weight: 400;
             font-size: 20px;
             text-transform: uppercase;
             color: #FAF7F2;
+            font-variation-settings: 'srff' 10;
+            &.current{
+                font-weight: 400;
+            }
+            &.inactive{
+                font-weight: 100;
+                font-family: 'Angst';
+                font-style: normal;
+                font-weight: 50;
+                font-size: 20px;
+                text-transform: uppercase;
+                color: #FAF7F2;
+                span{
+                    filter: blur(.8px);
+                }
+            }
+            &.last{
+                position: relative;
+                top: 5px;
+                font-family: 'Angst';
+                font-style: normal;
+                font-weight: 50;
+                font-size: 15px;
+                text-transform: uppercase;
+                color: #FAF7F2;
+                filter: blur(2px);
+            }
         }
         &_prof{
             font-family: 'MacPaw Fixel';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
+            line-height: 19px;
             color: #FFFFFF;
+            width: 200px;
+        }
+    }
+    &__more{
+        position: absolute;
+        bottom: 0;
+        left: 21%;
+        font-family: 'MacPaw Fixel';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #FAF7F2;
+        &:hover{
+            opacity: .7;
         }
     }
 }

@@ -23,18 +23,19 @@ function Team(){
                             </div>
                             <div className="team__names">
                                 <div className="team__names_item">
-                                    <div className="team__names_name">Дарья понкратова</div>
+                                    <div className="team__names_name current">Дарья <span>понкратова</span></div>
                                     <div className="team__names_prof">Управляющий партнер. Бренд стратег</div>
                                 </div>
                                 <div className="team__names_item">
-                                    <div className="team__names_name">Элина мергалиева</div>
+                                    <div className="team__names_name inactive">Элина <span>мергалиева</span></div>
                                     <div className="team__names_prof"></div>
                                 </div>
                                 <div className="team__names_item">
-                                    <div className="team__names_name">Артур Понкратов</div>
+                                    <div className="team__names_name last">Артур <span>Понкратов</span></div>
                                     <div className="team__names_prof"></div>
                                 </div>
                             </div>
+                            <div className="team__more">Узнать больше </div>
                         </div>
                     </div>
                 </div>

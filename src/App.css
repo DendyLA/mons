@@ -10,7 +10,7 @@ html,body{
     max-width: 1440px;
     height: 100%; 
     margin: 0 auto; 
-    padding: 0 20px; 
+    padding: 0 30px; 
 }
 
 *{
@@ -25,6 +25,7 @@ html,body{
 .page__wrapper{
     scroll-snap-type: y mandatory; 
     height: 100%;
+    width: 100%;
     transition: transform 2s ease;
 }
 .noise{
@@ -59,11 +60,12 @@ html,body{
     position: relative;
 }
 .view__seven{
-    background: #1C173E;
     position: relative;
+    background: conic-gradient(from 42.56deg at 50.76% 48.67%, #393B58 0deg, #1C173E 145.8deg, #1C173E 151.2deg, #393B58 360deg);
 }
 .content__wrapper{
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
