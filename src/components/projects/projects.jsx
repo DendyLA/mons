@@ -23,10 +23,10 @@ function Projects() {
 
     useEffect(() => {
         const cursor = document.querySelector(".cursor");
-        const projectsRight = document.querySelector(".projects__right");
+        const projectsRightItem = document.querySelector(".projects__item");
 
         const moveCursor = (e) => {
-        const rect = projectsRight.getBoundingClientRect();
+        const rect = projectsRightItem.getBoundingClientRect();
 
         if (
             e.clientX >= rect.left &&

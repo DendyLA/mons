@@ -70,7 +70,7 @@
         }
 
         &.inactive {
-            top: 53.4%;
+            top: 56.2%;
             font-family: 'Angst';
             font-style: normal;
             font-weight: 400;
@@ -100,6 +100,8 @@
     }
     &__list{
         margin-top: 50px;
+        width: 226px;
+        line-height: 17px;
         &_item{
             font-family: 'MacPaw Fixel';
             font-style: normal;
@@ -107,6 +109,7 @@
             font-size: 14px;
             color: #9E9E9E;
             position: relative;
+            margin-bottom: 15px;
             &::before{
                 content: '';
                 position: absolute;
@@ -139,7 +142,7 @@
         justify-content: center;
         // align-items: center;
         position: relative;
-        top: 42.5%;
+        top: 42.2%;
         height: calc(100% - 43%);
         &_wrapper{
             width: 210px;
