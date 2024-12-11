@@ -47,12 +47,13 @@
     &__item{
         font-family: 'Angst';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 50;
         font-size: 20px;
-        text-align: center;
+        color: #000000;
+        font-variation-settings: 'srff' 10;
         width: 100%;
         text-transform: uppercase;
-        color: #000000;
+        text-align: center;
         transition: all 1.5s ease;
         transform: translateY(50px);
         position: absolute;
@@ -73,7 +74,7 @@
             top: 56.2%;
             font-family: 'Angst';
             font-style: normal;
-            font-weight: 400;
+            font-weight: 50;
             font-size: 20px;
             text-transform: uppercase;
             color: #9E9E9E;
@@ -83,7 +84,7 @@
             bottom: 85px;
             font-family: 'Angst';
             font-style: normal;
-            font-weight: 400;
+            font-weight: 50;
             font-size: 15px;
             text-transform: uppercase;
             color: rgba(158, 158, 158, 0.6);

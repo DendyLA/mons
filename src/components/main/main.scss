@@ -20,11 +20,12 @@
     &__title{
         font-family: 'Angst';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 50;
         font-size: 25px;
         text-align: center;
         text-transform: uppercase;
         color: #FAF7F2;
+        font-variation-settings: 'srff' 10;
     }
     &__subtitle{
         font-family: 'MacPaw Fixel';

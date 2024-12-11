@@ -8,11 +8,12 @@
     &__title{
         font-family: 'Angst';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 50;
         font-size: 25px;
         text-align: center;
         text-transform: uppercase;
         color: #FAF7F2;
+        font-variation-settings: 'srff' 10;
     }
     &__main{
         height: 100%;
@@ -22,7 +23,7 @@
         display: flex;
         // align-items: center;
         position: relative;
-        top: 43%;
+        top: 46%;
         height: calc(100% - 57%);
     }
     &__right{
@@ -62,7 +63,7 @@
             flex-direction: column;
             gap: 10px;
             &:nth-child(2){
-                margin-left: 189px;
+                margin-left: 209px;
             }
             &:nth-child(3){
                 margin-left: 100px;
@@ -77,16 +78,16 @@
             color: #FAF7F2;
             font-variation-settings: 'srff' 10;
             &.current{
-                font-weight: 400;
+                font-weight: 100;
             }
             &.inactive{
-                font-weight: 100;
                 font-family: 'Angst';
                 font-style: normal;
                 font-weight: 50;
                 font-size: 20px;
                 text-transform: uppercase;
                 color: #FAF7F2;
+                font-variation-settings: 'srff' 10;
                 span{
                     filter: blur(.8px);
                 }

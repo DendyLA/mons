@@ -63,6 +63,10 @@ html,body{
     position: relative;
     background: conic-gradient(from 42.56deg at 50.76% 48.67%, #393B58 0deg, #1C173E 145.8deg, #1C173E 151.2deg, #393B58 360deg);
 }
+.view__eight{
+    position: relative;
+    background: conic-gradient(from 63.07deg at 54.72% 16.44%, #393B58 0deg, #1C173E 145.8deg, #1C173E 151.2deg, #393B58 360deg);
+}
 .content__wrapper{
     height: 100%;
     display: flex;

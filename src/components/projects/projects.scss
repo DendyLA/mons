@@ -3,11 +3,11 @@
     &__title{
         font-family: 'Angst';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 50;
         font-size: 25px;
         text-align: center;
         text-transform: uppercase;
-        color: #000000;
+        font-variation-settings: 'srff' 10;
     }
     &__first{
         height: 100vh;
