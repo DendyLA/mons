@@ -36,7 +36,7 @@ function App() {
                 </div>,
             ],
         },
-        { className: "view__five", content: [<Projects />] },
+        { className: "view__five", content: [<Projects currentSection={currentSection}/>] },
         {
             className: "view__six",
             content: [
@@ -173,7 +173,7 @@ function App() {
                 } else if (currentItemInfo === 2) {
                     console.log("currentItemInfo is 2, using scroll down");
                     wrapper.addEventListener("wheel", handleWheelDown, { passive: false }); // Прокрутка вниз
-                } else {
+                } else if (currentItemInfo === 1){
                     console.log("No scroll logic for currentItemInfo");
                     wrapper.removeEventListener("wheel", handleWheelDown,);
                     wrapper.removeEventListener("wheel", handleWheelUp,);
@@ -187,10 +187,10 @@ function App() {
                 console.log("Current section is 6");
                 wrapper.removeEventListener("wheel", handleWheel);
                 break;
-            case 7:
-                console.log("Current section is 7");
-                wrapper.removeEventListener("wheel", handleWheel);
-                break;
+            // case 7:
+            //     console.log("Current section is 7");
+            //     wrapper.removeEventListener("wheel", handleWheel);
+            //     break;
             default:
                 console.log("Default: Adding wheel handler");
                 defaultWheelHandler(); // Добавляем обработчик

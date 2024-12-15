@@ -14,7 +14,7 @@ function Projects() {
         theme: ["Стратегия", "Айдентика", "Web", "Гайд", "Дистрибуционная концепция"],
         },
         {
-        img: secondProject,
+        img: firstProject,
         name: "Unicorn studio",
         about: "ИТ компания",
         theme: ["Тактика", "Маркетинг", "Web", "Реклама", "Дистрибуционная концепция"],
@@ -51,57 +51,59 @@ function Projects() {
 
     return (
         <section className="projects">
-        <div className="container">
-            <div className="projects__second">
-            <div className="projects__second_wrapper row">
-                {/* Левая колонка */}
-                <div className="projects__left col-4">
-                <div className="projects__static">
-                    <div className="projects__current">
-                    <span>1</span>/{projectItems.length}
-                    </div>
-                    <div className="projects__link">Посмотреть кейсы</div>
-                </div>
-
-                {projectItems.map((project, index) => (
-                    <div
-                    key={index}
-                    className={`projects__info_wrapper ${
-                        index === 0 ? "visible" : "hidden"
-                    }`}
-                    >
-                    <div className="projects__main">
-                        <div className="projects__name">{project.name}</div>
-                        <div className="projects__about">{project.about}</div>
-                    </div>
-                    <div className="projects__theme">
-                        {project.theme.map((themeItem, i) => (
-                        <div key={i} className="projects__theme_item">
-                            {themeItem}
+            <div className="container">
+                <div className="projects__second">
+                <div className="projects__second_wrapper row">
+                    {/* Левая колонка */}
+                    <div className="projects__left col-4">
+                    <div className="projects__static">
+                        <div className="projects__current">
+                        <span>1</span>/{projectItems.length}
                         </div>
-                        ))}
+                        <div className="projects__link">Посмотреть кейсы</div>
                     </div>
-                    </div>
-                ))}
-                </div>
 
-                {/* Правая колонка */}
-                <div className="projects__right col-7 offset-1">
-                {projectItems.map((project, index) => (
-                    <div key={index} className="projects__item">
-                        <img src={project.img} alt={project.name} />
+                    {projectItems.map((project, index) => (
+                        <div
+                        key={index}
+                        className={`projects__info_wrapper ${
+                            index === 0 ? "visible" : "hidden"
+                        }`}
+                        >
+                        <div className="projects__main">
+                            <div className="projects__name">{project.name}</div>
+                            <div className="projects__about">{project.about}</div>
+                        </div>
+                        <div className="projects__theme">
+                            {project.theme.map((themeItem, i) => (
+                            <div key={i} className="projects__theme_item">
+                                {themeItem}
+                            </div>
+                            ))}
+                        </div>
+                        </div>
+                    ))}
                     </div>
-                ))}
-                <div className="cursor">
-                    <div className="custom-cursor"></div>
-                    <div className="button-wrapper">К проекту</div>
+
+                    {/* Правая колонка */}
+                    <div className="projects__right col-7 offset-1">
+                    {projectItems.map((project, index) => (
+                        <div key={index} className="projects__item">
+                            <img src={project.img} alt={project.name} />
+                        </div>
+                    ))}
+                    <div className="cursor">
+                        <div className="custom-cursor"></div>
+                        <div className="button-wrapper">К проекту</div>
+                    </div>
+                    </div>
                 </div>
                 </div>
             </div>
-            </div>
-        </div>
         </section>
     );
 }
 
 export default Projects;
+
+

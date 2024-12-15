@@ -138,6 +138,7 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
     transition: transform 0.1s ease-out;
+    width: 100%;
 }
 .custom-cursor {
     width: 30px; /* Диаметр круга */
