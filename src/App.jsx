@@ -8,11 +8,31 @@ import Team from "./components/team/team";
 import Form from "./components/form/form";
 import "./App.css";
 
+import firstProject from "./assets/project_1.png";
+import secondProject from "./assets/project_2.png";
+
 function App() {
     const [currentSection, setCurrentSection] = useState(0); // Индекс текущей секции
     const [isPageLoaded, setIsPageLoaded] = useState(false); // Флаг загрузки страницы
     const [visibleSection, setVisibleSection] = useState(null); // Для задержки отображения контента
     const [currentItemInfo, setCurrentItemInfo] = useState(0); // Текущий элемент из Info
+    const [currentItemProjects, setCurrentItemProjects] = useState(0);
+
+    const projectItems = [
+        {
+        img: firstProject,
+        name: "Krondstadt Asset Management",
+        about: "Инвестиционный фонд",
+        theme: ["Стратегия", "Айдентика", "Web", "Гайд", "Дистрибуционная концепция"],
+        },
+        {
+        img: firstProject,
+        name: "Unicorn studio",
+        about: "ИТ компания",
+        theme: ["Тактика", "Маркетинг", "Web", "Реклама", "Дистрибуционная концепция"],
+        },
+    ];
+
 
     let isThrottling = false; // Флаг для троттлинга
 
@@ -36,7 +56,7 @@ function App() {
                 </div>,
             ],
         },
-        { className: "view__five", content: [<Projects currentSection={currentSection}/>] },
+        { className: "view__five", content: [<Projects currentSection={currentSection} projectItems={projectItems} currentItemProjects={currentItemProjects} setCurrentItemProjects={setCurrentItemProjects}/>] },
         {
             className: "view__six",
             content: [
@@ -182,6 +202,26 @@ function App() {
             case 4:
                 console.log("Current section is 4");
                 wrapper.removeEventListener("wheel", handleWheel);
+                wrapper.removeEventListener("wheel", handleWheelDown,);
+                wrapper.removeEventListener("wheel", handleWheelUp,);
+                if (currentItemProjects === 0) {
+                    console.log("currentItemProjects is 0, enabling scroll up");
+                    setTimeout(() => {
+                        wrapper.addEventListener("wheel", handleWheelUp, { passive: false }); // Включаем скролл вверх
+                    }, 1000); // Задержка 1 секунда
+                } else if (currentItemProjects === projectItems.length - 1) {
+                    console.log("currentItemProjects is last, enabling scroll down");
+                    setTimeout(() => {
+                        wrapper.addEventListener("wheel", handleWheelDown, { passive: false }); // Включаем скролл вниз
+                    }, 1000); // Задержка 1 секунда
+                } else {
+                    console.log("currentItemProjects is in the middle, disabling scroll");
+                    setTimeout(() => {
+                        wrapper.removeEventListener("wheel", handleWheelUp); // Убираем скролл вверх
+                        wrapper.removeEventListener("wheel", handleWheelDown); // Убираем скролл вниз
+                    }, 1000); // Задержка 1 секунда
+                }
+                
                 break;
             case 6:
                 console.log("Current section is 6");
@@ -205,7 +245,7 @@ function App() {
             wrapper.removeEventListener("wheel", handleWheel);
             window.removeEventListener("load", onPageLoad);
         };
-}, [currentSection, currentItemInfo, handleWheel, handleWheelUp, handleWheelDown]);
+}, [currentSection, currentItemInfo, currentItemProjects, handleWheel, handleWheelUp, handleWheelDown]);
 
 
     useEffect(() => {
