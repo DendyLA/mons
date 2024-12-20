@@ -167,7 +167,8 @@ function App() {
     // }, [handleWheel]);
 
     //test code
-
+    
+    
     useEffect(() => {
         const wrapper = document.querySelector(".page__wrapper");
 
