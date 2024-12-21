@@ -227,6 +227,9 @@ function App() {
             case 6:
                 console.log("Current section is 6");
                 wrapper.removeEventListener("wheel", handleWheel);
+                wrapper.removeEventListener("wheel", handleWheelDown,);
+                wrapper.removeEventListener("wheel", handleWheelUp,);
+                wrapper.addEventListener("wheel", handleWheel);
                 break;
             // case 7:
             //     console.log("Current section is 7");

@@ -39,42 +39,6 @@ function Info({ currentItem, setCurrentItem, currentSection }) {
         },
     ];
 
-    //work code
-
-    // useEffect(() => {
-    //     const handleScroll = (e) => {
-    //         e.stopPropagation();
-    //         e.preventDefault();
-
-    //         if (isScrolling) return;
-
-    //         const scrollThreshold = 50; // Порог чувствительности
-    //         if (e.deltaY > scrollThreshold && currentItem < infoItems.length - 1) {
-    //             setPrevItems((prev) =>
-    //                 prev.includes(currentItem) ? prev : [...prev, currentItem]
-    //             );
-    //             setCurrentItem((prev) => prev + 1);
-    //             setIsScrolling(true);
-    //         } else if (e.deltaY < -scrollThreshold && currentItem > 0) {
-    //             setPrevItems((prev) =>
-    //                 prev.filter((item) => item !== currentItem - 1)
-    //             );
-    //             setCurrentItem((prev) => prev - 1);
-    //             setIsScrolling(true);
-    //         }
-
-    //         setTimeout(() => setIsScrolling(false), 500);
-    //     };
-    //     console.log(currentItem)
-    //     const infoMiddle = document.querySelector(".info__middle");
-    //     infoMiddle.addEventListener("wheel", handleScroll);
-
-    //     return () => infoMiddle.removeEventListener("wheel", handleScroll);
-    // }, [currentItem, infoItems.length, isScrolling]);
-
-
-    //test code
-
     useEffect(() => {
         const handleScroll = (e) => {
             e.preventDefault();

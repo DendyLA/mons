@@ -1,7 +1,3 @@
-
-//working now
-
-
 import { useEffect, useState } from "react";
 import "./projects.scss";
 
@@ -14,10 +10,10 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
     useEffect(() => {
         const cursor = document.querySelector(".cursor");
         const projectsRight = document.querySelector(".projects__right");
-    
+
         const moveCursor = (e) => {
             const rect = projectsRight.getBoundingClientRect();
-    
+
             if (
                 e.clientX >= rect.left &&
                 e.clientX <= rect.right &&
@@ -31,7 +27,7 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
                 cursor.style.opacity = "0";
             }
         };
-    
+
         const refreshRect = () => {
             // Принудительное обновление
             projectsRight.style.transform = "translateZ(0)";
@@ -39,21 +35,18 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
             console.log("Rect after forced update:", rect);
             return rect;
         };
-    
+
         if (currentSection === 4) {
             setTimeout(() => {
                 refreshRect();
                 document.addEventListener("mousemove", moveCursor);
             }, 100);
         }
-    
+
         return () => {
             document.removeEventListener("mousemove", moveCursor);
         };
     }, [currentSection]);
-    
-    
-    
 
     // Включение скролла через 1 секунду
     useEffect(() => {
@@ -69,7 +62,7 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
     useEffect(() => {
         if (currentSection !== 4 || !isScrollEnabled) return;
 
-        setCurrentItemProjects(0)
+        const itemHeight = 710 + 45; // Высота + gap
         const projectsRight = document.querySelector(".projects__right");
 
         let isScrolling = false; // Флаг для предотвращения повторного скролла
@@ -79,8 +72,6 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
                 e.preventDefault();
                 return; // Блокируем скролл, если идёт анимация
             }
-
-            const itemHeight = 710 + 45; // Высота + gap
 
             isScrolling = true; // Блокируем повторный вызов
             setIsAnimating(true);
@@ -94,6 +85,18 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
                 setCurrentItemProjects((prev) => prev - 1);
                 projectsRight.style.transform = `translateY(-${(currentItemProjects - 1) * itemHeight}px)`;
             }
+
+            // Обновление видимости проекта с классом 'projects__info_wrapper'
+            const visibleProject = document.querySelectorAll('.projects__info_wrapper');
+            visibleProject.forEach((item, index) => {
+                if (index === currentItemProjects) {
+                    item.classList.add('visible');
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.remove('visible');
+                    item.classList.add('hidden');
+                }
+            });
 
             // Сбрасываем блокировку через 1.5 секунды
             setTimeout(() => {
@@ -110,6 +113,27 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
             document.removeEventListener("wheel", handleWheel);
         };
     }, [currentSection, isScrollEnabled, isAnimating, currentItemProjects, projectItems.length]);
+
+    // Сброс состояния при переходе в секцию 4
+    useEffect(() => {
+        if (currentSection === 4) {
+            setCurrentItemProjects(0); // Сбрасываем проект на 0
+            const projectsRight = document.querySelector(".projects__right");
+            projectsRight.style.transform = "translateY(0)"; // Сбрасываем позицию правой колонки
+            const visibleProject = document.querySelectorAll('.projects__info_wrapper');
+            visibleProject.forEach(item => {
+                item.classList.remove('visible');
+                item.classList.add('hidden'); // Скрываем все проекты
+            });
+
+            // Добавляем класс "visible" для первого элемента при переходе на секцию 4
+            const firstProject = document.querySelectorAll('.projects__info_wrapper')[0];
+            if (firstProject) {
+                firstProject.classList.add('visible');
+                firstProject.classList.remove('hidden');
+            }
+        }
+    }, [currentSection]);
 
     // Обработка клика на проект
     const handleItemClick = (index) => {
@@ -135,9 +159,7 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
                             {projectItems.map((project, index) => (
                                 <div
                                     key={index}
-                                    className={`projects__info_wrapper ${
-                                        currentItemProjects === index ? "visible" : "hidden"
-                                    }`}
+                                    className={`projects__info_wrapper ${currentItemProjects === index ? "visible" : "hidden"}`}
                                 >
                                     <div className="projects__main">
                                         <div className="projects__name">{project.name}</div>
@@ -179,5 +201,3 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
 }
 
 export default Projects;
-
-
