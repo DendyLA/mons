@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Header from "./components/header/header";
 import Main from "./components/main/main";
 import SubMain from "./components/subMain/subMain";
@@ -171,85 +171,105 @@ function App() {
     
     useEffect(() => {
         const wrapper = document.querySelector(".page__wrapper");
-
+    
         // Обработчик по умолчанию
         const defaultWheelHandler = () => {
             wrapper.addEventListener("wheel", handleWheel, { passive: false });
         };
-
+    
         // Устанавливаем флаг загрузки страницы
         const onPageLoad = () => {
             setIsPageLoaded(true);
             setCurrentSection(0); // Начальная позиция секции
         };
-
+    
+        // Удаляем все обработчики события перед добавлением новых
+        const removeAllWheelHandlers = () => {
+            wrapper.removeEventListener("wheel", handleWheel);
+            wrapper.removeEventListener("wheel", handleWheelUp);
+            wrapper.removeEventListener("wheel", handleWheelDown);
+        };
+    
+        // Функция для добавления обработчиков с задержкой
+        const addWheelHandlerWithDelay = (handler, delay) => {
+            let timeoutReached = false;
+            
+            // Используем requestAnimationFrame для отслеживания времени
+            const checkDelay = () => {
+                if (!timeoutReached) {
+                    timeoutReached = true;
+                    wrapper.addEventListener("wheel", handler, { passive: false });
+                }
+            };
+    
+            const startTime = performance.now();
+            
+            // Проверяем время в следующем кадре
+            const checkTime = () => {
+                if (performance.now() - startTime >= delay) {
+                    checkDelay();
+                } else {
+                    requestAnimationFrame(checkTime);
+                }
+            };
+            
+            requestAnimationFrame(checkTime);
+        };
+    
         // Логика для разных секций
         switch (currentSection) {
             case 2:
                 console.log("Current section is 2");
-                wrapper.removeEventListener("wheel", handleWheel);
+                removeAllWheelHandlers(); // Убираем все обработчики
                 if (currentItemInfo === 0) {
                     console.log("currentItemInfo is 0, using scroll up");
-                    wrapper.addEventListener("wheel", handleWheelUp, { passive: false }); // Прокрутка вверх
+                    addWheelHandlerWithDelay(handleWheelUp, 1200); // Добавляем прокрутку вверх через 1.2 сек
                 } else if (currentItemInfo === 2) {
                     console.log("currentItemInfo is 2, using scroll down");
-                    wrapper.addEventListener("wheel", handleWheelDown, { passive: false }); // Прокрутка вниз
-                } else if (currentItemInfo === 1){
+                    addWheelHandlerWithDelay(handleWheelDown, 1200); // Добавляем прокрутку вниз через 1.2 сек
+                } else if (currentItemInfo === 1) {
                     console.log("No scroll logic for currentItemInfo");
-                    wrapper.removeEventListener("wheel", handleWheelDown,);
-                    wrapper.removeEventListener("wheel", handleWheelUp,);
+                    removeAllWheelHandlers(); // Убираем все обработчики
                 }
                 break;
+    
             case 4:
                 console.log("Current section is 4");
-                wrapper.removeEventListener("wheel", handleWheel);
-                wrapper.removeEventListener("wheel", handleWheelDown,);
-                wrapper.removeEventListener("wheel", handleWheelUp,);
+                removeAllWheelHandlers(); // Убираем все обработчики
                 if (currentItemProjects === 0) {
                     console.log("currentItemProjects is 0, enabling scroll up");
-                    setTimeout(() => {
-                        wrapper.addEventListener("wheel", handleWheelUp, { passive: false }); // Включаем скролл вверх
-                    }, 1000); // Задержка 1 секунда
+                    addWheelHandlerWithDelay(handleWheelUp, 1200); // Включаем прокрутку вверх через 1.2 сек
                 } else if (currentItemProjects === projectItems.length - 1) {
                     console.log("currentItemProjects is last, enabling scroll down");
-                    setTimeout(() => {
-                        wrapper.addEventListener("wheel", handleWheelDown, { passive: false }); // Включаем скролл вниз
-                    }, 1000); // Задержка 1 секунда
+                    addWheelHandlerWithDelay(handleWheelDown, 1200); // Включаем прокрутку вниз через 1.2 сек
                 } else {
                     console.log("currentItemProjects is in the middle, disabling scroll");
-                    setTimeout(() => {
-                        wrapper.removeEventListener("wheel", handleWheelUp); // Убираем скролл вверх
-                        wrapper.removeEventListener("wheel", handleWheelDown); // Убираем скролл вниз
-                    }, 1000); // Задержка 1 секунда
+                    removeAllWheelHandlers(); // Убираем все обработчики
                 }
-                
                 break;
+    
             case 6:
                 console.log("Current section is 6");
-                wrapper.removeEventListener("wheel", handleWheel);
-                wrapper.removeEventListener("wheel", handleWheelDown,);
-                wrapper.removeEventListener("wheel", handleWheelUp,);
-                wrapper.addEventListener("wheel", handleWheel);
+                removeAllWheelHandlers(); // Убираем все обработчики
+                wrapper.addEventListener("wheel", handleWheel, { passive: false }); // Прокрутка по умолчанию
                 break;
-            // case 7:
-            //     console.log("Current section is 7");
-            //     wrapper.removeEventListener("wheel", handleWheel);
-            //     break;
+    
             default:
                 console.log("Default: Adding wheel handler");
-                defaultWheelHandler(); // Добавляем обработчик
+                defaultWheelHandler(); // Добавляем обработчик по умолчанию
                 break;
         }
-
+    
         // Добавляем событие загрузки страницы
         window.addEventListener("load", onPageLoad);
-
+    
         return () => {
             // Убираем обработчики событий при размонтировании компонента
-            wrapper.removeEventListener("wheel", handleWheel);
+            removeAllWheelHandlers(); // Убираем все обработчики
             window.removeEventListener("load", onPageLoad);
         };
-}, [currentSection, currentItemInfo, currentItemProjects, handleWheel, handleWheelUp, handleWheelDown]);
+    }, [currentSection, currentItemInfo, currentItemProjects, handleWheel, handleWheelUp, handleWheelDown]);
+    
 
 
     useEffect(() => {

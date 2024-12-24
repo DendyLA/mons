@@ -117,6 +117,7 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
     // Сброс состояния при переходе в секцию 4
     useEffect(() => {
         if (currentSection === 4) {
+            
             setCurrentItemProjects(0); // Сбрасываем проект на 0
             const projectsRight = document.querySelector(".projects__right");
             projectsRight.style.transform = "translateY(0)"; // Сбрасываем позицию правой колонки

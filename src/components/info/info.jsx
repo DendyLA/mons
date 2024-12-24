@@ -2,10 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import "./info.scss";
 
 function Info({ currentItem, setCurrentItem, currentSection }) {
-    // const [currentItem, setCurrentItem] = useState(0);
-    const [prevItems, setPrevItems] = useState([]);
-    const [isScrolling, setIsScrolling] = useState(false);
-    
+    const [isScrolling, setIsScrolling] = useState(false); // Для блокировки прокрутки
+    const [isAnimationInProgress, setIsAnimationInProgress] = useState(false); // Для отслеживания состояния анимации
+
     const infoItems = [
         {
             title: "Аналитика рынка и аудит бизнеса",
@@ -41,89 +40,50 @@ function Info({ currentItem, setCurrentItem, currentSection }) {
 
     useEffect(() => {
         const handleScroll = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-    
-            // Не разрешаем прокрутку, если уже идет прокрутка
-            if (isScrolling) return;
-    
+            // Если прокрутка или анимация уже в процессе, блокируем дальнейшую прокрутку
+            if (isScrolling || isAnimationInProgress) return;
+
+            e.preventDefault(); // Предотвращаем стандартное поведение прокрутки
+
+            // Устанавливаем флаг, чтобы блокировать прокрутку
+            setIsScrolling(true);
+
             const scrollThreshold = 50; // Порог чувствительности
-    
-            if (currentItem === 0) {
-                // Разрешаем прокрутку только вниз
-                if (e.deltaY > scrollThreshold && currentItem < infoItems.length - 1) {
-                    setPrevItems((prev) =>
-                        prev.includes(currentItem) ? prev : [...prev, currentItem]
-                    );
-                    setCurrentItem((prev) => prev + 1);
-                    setIsScrolling(true);
-                } else if (e.deltaY < -scrollThreshold) {
-                    // Если прокрутка вверх, убираем обработчик с .info и прокрутка будет происходить на родителе
-                    document.querySelector('.info').removeEventListener('wheel', handleScroll);
-                    return;
-                }
-            } else if (currentItem === 1) {
-                // Разрешаем прокрутку как вниз, так и вверх
-                if (e.deltaY > scrollThreshold && currentItem < infoItems.length - 1) {
-                    setPrevItems((prev) =>
-                        prev.includes(currentItem) ? prev : [...prev, currentItem]
-                    );
-                    setCurrentItem((prev) => prev + 1);
-                    setIsScrolling(true);
-                } else if (e.deltaY < -scrollThreshold && currentItem > 0) {
-                    setPrevItems((prev) =>
-                        prev.filter((item) => item !== currentItem - 1)
-                    );
-                    setCurrentItem((prev) => prev - 1);
-                    setIsScrolling(true);
-                }
-            } else if (currentItem === 2) {
-                // Разрешаем прокрутку только вверх
-                if (e.deltaY < -scrollThreshold && currentItem > 0) {
-                    setPrevItems((prev) =>
-                        prev.filter((item) => item !== currentItem - 1)
-                    );
-                    setCurrentItem((prev) => prev - 1);
-                    setIsScrolling(true);
-                } else if (e.deltaY > scrollThreshold) {
-                    // Если прокрутка вниз, убираем обработчик с .info и прокрутка будет происходить на родителе
-                    document.querySelector('.info').removeEventListener('wheel', handleScroll);
-                    return;
-                }
+
+            if (e.deltaY > scrollThreshold || e.deltaY < -scrollThreshold) {
+                // Запуск анимации (переход к следующему элементу)
+                setIsAnimationInProgress(true);
+                setCurrentItem((prev) => {
+                    if (e.deltaY > 0) {
+                        // Прокрутка вниз
+                        return (prev + 1) % infoItems.length; // Цикличный переход к следующему элементу
+                    } else {
+                        // Прокрутка вверх
+                        return (prev - 1 + infoItems.length) % infoItems.length; // Цикличный переход к предыдущему элементу
+                    }
+                });
+
+                // Завершаем анимацию через 1.5 секунды (анимируем 1.5 секунды)
+                setTimeout(() => {
+                    setIsScrolling(false); // Разрешаем прокрутку
+                    setIsAnimationInProgress(false); // Завершаем анимацию
+                }, 1500); // Время анимации
             }
-    
-            // Сбрасываем флаг прокрутки через 500мс
-            setTimeout(() => setIsScrolling(false), 500);
         };
-    
+
         const info = document.querySelector(".info");
-    
-        // Проверяем, что текущий элемент на экране
+
         if (info) {
-            // Добавляем обработчик только если currentItem == 0 или 1
-            if (currentItem === 0 || currentItem === 1) {
-                info.addEventListener("wheel", handleScroll);
-            } else if (currentItem === 2) {
-                // В случае currentItem === 2, добавляем обработчик для прокрутки вверх
-                info.addEventListener("wheel", handleScroll);
-            } else {
-                // Убираем обработчик, если currentItem не равен 0, 1 или 2
-                info.removeEventListener("wheel", handleScroll);
-            }
+            info.addEventListener("wheel", handleScroll, { passive: false });
         }
-    
-        // Убираем обработчик при размонтировании компонента или изменении currentItem
+
         return () => {
             if (info) {
                 info.removeEventListener("wheel", handleScroll);
             }
         };
-    }, [currentItem, infoItems.length, isScrolling, currentSection]);
-    
+    }, [currentItem, isScrolling, isAnimationInProgress]);
 
-    
-
-    
     return (
         <section className="info">
             <div className="container">
