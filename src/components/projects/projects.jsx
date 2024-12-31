@@ -39,7 +39,7 @@ function Projects({ currentSection, projectItems, setCurrentItemProjects, curren
         if (currentSection === 4) {
             setTimeout(() => {
                 refreshRect();
-                document.addEventListener("mousemove", moveCursor);
+                document.addEventListener("mousemove", moveCursor, { passive: false });
             }, 100);
         }
 

@@ -195,25 +195,25 @@ function App() {
             wrapper.scrollTop = 0; // Устанавливаем прокрутку на начало
         };
     
-        // Функция для добавления обработчиков с задержкой (с использованием requestAnimationFrame)
-        const addWheelHandlerWithDelay = (handler, delay) => {
-            let timeoutReached = false;
+        // // Функция для добавления обработчиков с задержкой (с использованием requestAnimationFrame)
+        // const addWheelHandlerWithDelay = (handler, delay) => {
+        //     let timeoutReached = false;
     
-            const startTime = performance.now();
+        //     const startTime = performance.now();
             
-            const checkTime = () => {
-                if (performance.now() - startTime >= delay) {
-                    if (!timeoutReached) {
-                        timeoutReached = true;
-                        wrapper.addEventListener("wheel", handler, { passive: false });
-                    }
-                } else {
-                    requestAnimationFrame(checkTime);
-                }
-            };
+        //     const checkTime = () => {
+        //         if (performance.now() - startTime >= delay) {
+        //             if (!timeoutReached) {
+        //                 timeoutReached = true;
+        //                 wrapper.addEventListener("wheel", handler, { passive: false });
+        //             }
+        //         } else {
+        //             requestAnimationFrame(checkTime);
+        //         }
+        //     };
             
-            requestAnimationFrame(checkTime);
-        };
+        //     requestAnimationFrame(checkTime);
+        // };
     
         // Логика для разных секций
         switch (currentSection) {
@@ -223,10 +223,14 @@ function App() {
                 resetScrollPosition(); // Сбрасываем прокрутку на начало
                 if (currentItemInfo === 0) {
                     console.log("currentItemInfo is 0, using scroll up");
-                    addWheelHandlerWithDelay(handleWheelUp, 1200); // Добавляем прокрутку вверх через 1.2 сек
+                    setTimeout(()=>{
+                        wrapper.addEventListener("wheel", handleWheelUp, { passive: false });
+                    },1000)
                 } else if (currentItemInfo === 2) {
                     console.log("currentItemInfo is 2, using scroll down");
-                    addWheelHandlerWithDelay(handleWheelDown, 1200); // Добавляем прокрутку вниз через 1.2 сек
+                    setTimeout(()=>{
+                        wrapper.addEventListener("wheel", handleWheelDown, { passive: false });
+                    },1000)
                 } else if (currentItemInfo === 1) {
                     console.log("No scroll logic for currentItemInfo");
                     removeAllWheelHandlers(); // Убираем все обработчики
@@ -239,10 +243,14 @@ function App() {
                 resetScrollPosition(); // Сбрасываем прокрутку на начало
                 if (currentItemProjects === 0) {
                     console.log("currentItemProjects is 0, enabling scroll up");
-                    addWheelHandlerWithDelay(handleWheelUp, 1200); // Включаем прокрутку вверх через 1.2 сек
+                    setTimeout(()=> {
+                        wrapper.addEventListener("wheel", handleWheelUp, { passive: false });
+                    },1000)
                 } else if (currentItemProjects === projectItems.length - 1) {
                     console.log("currentItemProjects is last, enabling scroll down");
-                    addWheelHandlerWithDelay(handleWheelDown, 1200); // Включаем прокрутку вниз через 1.2 сек
+                    setTimeout(()=>{
+                        wrapper.addEventListener("wheel", handleWheelDown, { passive: false });
+                    },1000)
                 } else {
                     console.log("currentItemProjects is in the middle, disabling scroll");
                     removeAllWheelHandlers(); // Убираем все обработчики
