@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import "./info.scss";
 
 function Info({ currentItem, setCurrentItem, currentSection }) {
@@ -40,34 +40,31 @@ function Info({ currentItem, setCurrentItem, currentSection }) {
 
     useEffect(() => {
         const handleScroll = (e) => {
-            // Если прокрутка или анимация уже в процессе, блокируем дальнейшую прокрутку
             if (isScrolling || isAnimationInProgress) return;
 
-            e.preventDefault(); // Предотвращаем стандартное поведение прокрутки
+            e.preventDefault();
 
-            // Устанавливаем флаг, чтобы блокировать прокрутку
-            setIsScrolling(true);
+            // Порог для трекпадов и обычных мышей
+            const scrollThreshold = Math.abs(e.deltaY) > 20 ? 20 : 3;
 
-            const scrollThreshold = 50; // Порог чувствительности
-
-            if (e.deltaY > scrollThreshold || e.deltaY < -scrollThreshold) {
-                // Запуск анимации (переход к следующему элементу)
+            if (Math.abs(e.deltaY) > scrollThreshold) {
+                setIsScrolling(true);
                 setIsAnimationInProgress(true);
+
                 setCurrentItem((prev) => {
                     if (e.deltaY > 0) {
                         // Прокрутка вниз
-                        return (prev + 1) % infoItems.length; // Цикличный переход к следующему элементу
+                        return (prev + 1) % infoItems.length;
                     } else {
                         // Прокрутка вверх
-                        return (prev - 1 + infoItems.length) % infoItems.length; // Цикличный переход к предыдущему элементу
+                        return (prev - 1 + infoItems.length) % infoItems.length;
                     }
                 });
 
-                // Завершаем анимацию через 1.5 секунды (анимируем 1.5 секунды)
                 setTimeout(() => {
-                    setIsScrolling(false); // Разрешаем прокрутку
-                    setIsAnimationInProgress(false); // Завершаем анимацию
-                }, 1500); // Время анимации
+                    setIsScrolling(false);
+                    setIsAnimationInProgress(false);
+                }, 1500); // Длительность блокировки на время анимации
             }
         };
 
