@@ -303,6 +303,7 @@ function App() {
                     transition: "transform 2s ease",
                 }}
             >
+                <div className="sections__color"></div>
                 <div className="noise"></div>
                 {sections.map((section, index) => (
                     <div key={index} className={`view ${section.className}`}>

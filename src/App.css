@@ -13,9 +13,9 @@ html,body{
     padding: 0 30px; 
 }
 
-*{
+/* *{
     z-index: 2;
-}
+} */
 .page{
     position: relative;
     width: 100vw;
@@ -45,11 +45,19 @@ html,body{
     height: 100vh;
     overflow: hidden;
 }
+.sections__color{
+    height: 200vh;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to bottom, #1C173E 0%, #FFFFFF 100%);
+}
 .view__one{
-    background: #1C173E;
+    /* background: #1C173E; */
 }
 .view__two{
-    background: linear-gradient(to bottom, #1C173E 0%, #FFFFFF 100%);
+    /* background: linear-gradient(to bottom, #1C173E 0%, #FFFFFF 100%); */
     position: relative;
 }
 .view__three{
