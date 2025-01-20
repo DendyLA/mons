@@ -71,7 +71,7 @@
         }
 
         &.inactive {
-            top: 56.2%;
+            top: 45.2%;
             font-family: 'Angst';
             font-style: normal;
             font-weight: 50;
@@ -85,7 +85,7 @@
             font-family: 'Angst';
             font-style: normal;
             font-weight: 50;
-            font-size: 15px;
+            font-size: 20px;
             text-transform: uppercase;
             color: rgba(158, 158, 158, 0.6);
             filter: blur(2.5px);
@@ -100,7 +100,7 @@
         color: #9E9E9E;
     }
     &__list{
-        margin-top: 50px;
+        margin-top: 20px;
         width: 226px;
         line-height: 17px;
         &_item{
